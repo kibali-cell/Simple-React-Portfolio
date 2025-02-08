@@ -22,7 +22,7 @@ const MainContent = ({ setActiveSection }) => {
   return (
     <div className="main-content p-4">
       {/* About Section */}
-      <motion.section 
+      <motion.section
         id="about"
         className="content-section mb-5"
         initial={{ opacity: 0 }}
@@ -32,13 +32,15 @@ const MainContent = ({ setActiveSection }) => {
         <div className="section-card p-4">
           <h2>About Me</h2>
           <p>
-            Hey there! I'm a Software Engineer and Full-Stack Developer passionate about creating engaging digital experiences. With a strong background in both front-end and back-end development, I design and build applications with a focus on clean design, user experience, and performance.
+            Hello! I’m Jane Doe, a passionate Software Engineer and Full-Stack Developer based in New York.
+            I specialize in creating dynamic and responsive web applications with a focus on performance
+            and user experience.
           </p>
         </div>
       </motion.section>
 
       {/* Projects Section */}
-      <motion.section 
+      <motion.section
         id="projects"
         className="content-section mb-5"
         initial={{ opacity: 0 }}
@@ -47,9 +49,28 @@ const MainContent = ({ setActiveSection }) => {
       >
         <h2>Featured Projects</h2>
         <div className="projects-grid row g-4">
-          {[1, 2, 3].map((project) => (
-            <motion.div 
-              key={project}
+          {[
+            {
+              id: 1,
+              title: "E-Commerce Platform",
+              description: "A modern e-commerce website with a seamless shopping experience.",
+              image: "https://via.placeholder.com/400x300?text=E-Commerce+Platform"
+            },
+            {
+              id: 2,
+              title: "Social Network App",
+              description: "A social networking app connecting people worldwide.",
+              image: "https://via.placeholder.com/400x300?text=Social+Network+App"
+            },
+            {
+              id: 3,
+              title: "Analytics Dashboard",
+              description: "An interactive dashboard for data visualization and analysis.",
+              image: "https://via.placeholder.com/400x300?text=Analytics+Dashboard"
+            }
+          ].map((project) => (
+            <motion.div
+              key={project.id}
               className="project-card col-md-6 col-lg-4"
               whileHover={{ y: -5 }}
               initial={{ opacity: 0, y: 20 }}
@@ -57,16 +78,20 @@ const MainContent = ({ setActiveSection }) => {
               viewport={{ once: true }}
             >
               <div className="project-image gradient-overlay p-3">
-                <h3>Project {project}</h3>
-                <p>Short description of the project.</p>
+                <img src={project.image} alt={project.title} className="img-fluid mb-2" />
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
+        <div className="text-center mt-4">
+          <a href="/projects" className="btn btn-outline-light">View All Projects</a>
+        </div>
       </motion.section>
 
       {/* Experience Section */}
-      <motion.section 
+      <motion.section
         id="experience"
         className="content-section mb-5"
         initial={{ opacity: 0 }}
@@ -77,13 +102,22 @@ const MainContent = ({ setActiveSection }) => {
         <div className="timeline position-relative ps-3">
           {[
             {
-              company: 'Spiraxy Studios',
-              role: 'Software Engineer',
-              period: '2024 - Present'
+              company: 'Tech Innovations Inc.',
+              role: 'Senior Software Engineer',
+              period: '2022 - Present'
             },
-            // Add more experiences as needed
+            {
+              company: 'Creative Solutions',
+              role: 'Software Developer',
+              period: '2019 - 2022'
+            },
+            {
+              company: 'WebWorks Agency',
+              role: 'Junior Developer',
+              period: '2017 - 2019'
+            }
           ].map((exp, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               className="timeline-item mb-4 position-relative"
               initial={{ opacity: 0, x: -20 }}
@@ -101,7 +135,7 @@ const MainContent = ({ setActiveSection }) => {
       </motion.section>
 
       {/* Skills Section */}
-      <motion.section 
+      <motion.section
         id="skills"
         className="content-section mb-5"
         initial={{ opacity: 0 }}
@@ -115,7 +149,7 @@ const MainContent = ({ setActiveSection }) => {
               'React', 'Node.js', 'Python', 'MongoDB',
               'TypeScript', 'AWS', 'Docker', 'Git'
             ].map((skill, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className="skill-chip col-6 col-md-3 text-center p-2"
                 whileHover={{ scale: 1.05 }}
