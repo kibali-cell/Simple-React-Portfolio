@@ -1,3 +1,4 @@
+/* Custom Properties & Global Styles */
 :root {
   --bg-primary: #0a0a0a;
   --bg-secondary: #141414;
@@ -9,7 +10,6 @@
   --gradient-end: #0a0a0a;
 }
 
-/* Global Styles */
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -21,6 +21,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Background Layers */
@@ -32,7 +33,7 @@ body {
   bottom: 0;
   background: radial-gradient(circle at top right, var(--gradient-start), var(--gradient-end));
   opacity: 0.4;
-  z-index: 0;
+  z-index: -2;
 }
 
 .noise-overlay {
@@ -41,28 +42,25 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml;base64,...'); /* Your noise texture SVG */
+  /* Replace the URL below with your own noise texture data URL or image */
+  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTBweCIgaGVpZ2h0PSI1MHB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGZpbGw9IiNmZmYiPjxyZWN0IHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0iIzExMTEiLz48L2c+PC9zdmc+');
   opacity: 0.05;
-  z-index: 1;
+  z-index: -1;
 }
 
 /* Sidebar Styles */
 .sidebar-container {
-  position: sticky;
-  top: 2rem;
-  padding: 2rem;
   background: var(--bg-secondary);
   border-radius: 20px;
   border: 1px solid var(--accent);
   backdrop-filter: blur(10px);
-  z-index: 10;
 }
 
-/* Profile and Navigation */
+/* Profile */
 .profile-image-container {
   width: 120px;
   height: 120px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto;
 }
 
 .profile-image {
@@ -79,21 +77,18 @@ body {
   right: -5px;
   width: 12px;
   height: 12px;
-  background: #4CAF50;
+  background: #4caf50;
   border-radius: 50%;
   border: 2px solid var(--bg-secondary);
 }
 
+/* Navigation */
 .primary-nav .nav-item {
-  display: block;
-  padding: 0.75rem 1rem;
   color: var(--text-secondary);
   text-decoration: none;
   border-radius: 12px;
-  transition: background 0.3s;
-  margin-bottom: 0.5rem;
+  transition: background 0.3s ease;
 }
-
 .primary-nav .nav-item.active,
 .primary-nav .nav-item:hover {
   background: var(--accent);
@@ -101,21 +96,18 @@ body {
 }
 
 /* Availability Section */
-.availability-section .status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.status-badge {
   background: var(--accent);
   padding: 0.25rem 0.5rem;
   border-radius: 12px;
 }
 
-/* Projects Grid */
-.projects-grid .project-card {
-  border-radius: 20px;
-  overflow: hidden;
+/* Projects */
+.project-card {
   background: var(--bg-elevation);
   border: 1px solid var(--accent);
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .gradient-overlay {
@@ -132,7 +124,6 @@ body {
   position: relative;
   padding-left: 2rem;
 }
-
 .timeline::before {
   content: '';
   position: absolute;
@@ -141,10 +132,6 @@ body {
   bottom: 0;
   width: 1px;
   background: var(--accent);
-}
-
-.timeline-item {
-  position: relative;
 }
 
 .timeline-item::before {
@@ -159,10 +146,9 @@ body {
   border: 2px solid var(--bg-primary);
 }
 
-/* Skills Grid */
+/* Skills */
 .skill-chip {
   background: var(--accent);
-  padding: 0.75rem 1rem;
   border-radius: 12px;
   cursor: pointer;
 }
@@ -173,21 +159,13 @@ body {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
-
 .pulse {
   animation: pulse 2s infinite;
 }
 
-/* Custom Scrollbar (Optional) */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 4px;
+/* Responsive Tweaks */
+@media (max-width: 992px) {
+  .sidebar-container {
+    margin-bottom: 2rem;
+  }
 }

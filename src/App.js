@@ -1,4 +1,4 @@
-// App.js
+// src/App.js
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
@@ -13,14 +13,14 @@ const App = () => {
 
   return (
     <div className={`portfolio-app ${darkMode ? 'dark' : 'light'}`}>
-      {/* Background Layers */}
+      {/* Background layers */}
       <div className="gradient-bg">
         <div className="noise-overlay"></div>
       </div>
 
       <div className="container-fluid">
         <div className="row g-4">
-          {/* Sidebar Section */}
+          {/* Sidebar */}
           <div className="col-lg-3">
             <Sidebar
               activeSection={activeSection}
@@ -30,7 +30,7 @@ const App = () => {
             />
           </div>
 
-          {/* Main Content Section */}
+          {/* Main Content */}
           <div className="col-lg-9">
             <MainContent setActiveSection={setActiveSection} />
           </div>

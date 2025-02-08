@@ -1,12 +1,11 @@
-// components/MainContent.js
+// src/components/MainContent.js
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const MainContent = ({ setActiveSection }) => {
-  // Use IntersectionObserver to update the active section
   useEffect(() => {
     const sections = document.querySelectorAll('.content-section');
-    const options = { threshold: 0.4 };
+    const observerOptions = { threshold: 0.4 };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -14,15 +13,14 @@ const MainContent = ({ setActiveSection }) => {
           setActiveSection(entry.target.id);
         }
       });
-    }, options);
+    }, observerOptions);
 
     sections.forEach((section) => observer.observe(section));
-
     return () => sections.forEach((section) => observer.unobserve(section));
   }, [setActiveSection]);
 
   return (
-    <div className="main-content">
+    <div className="main-content p-4">
       {/* About Section */}
       <motion.section 
         id="about"
@@ -32,9 +30,9 @@ const MainContent = ({ setActiveSection }) => {
         viewport={{ once: true }}
       >
         <div className="section-card p-4">
-          <h2>About</h2>
+          <h2>About Me</h2>
           <p>
-            Hey there! I'm a Software Engineer and Full-Stack Developer passionate about building engaging, interactive digital experiences. I always approach development with the user in mind.
+            Hey there! I'm a Software Engineer and Full-Stack Developer passionate about creating engaging digital experiences. With a strong background in both front-end and back-end development, I design and build applications with a focus on clean design, user experience, and performance.
           </p>
         </div>
       </motion.section>
@@ -43,6 +41,9 @@ const MainContent = ({ setActiveSection }) => {
       <motion.section 
         id="projects"
         className="content-section mb-5"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
       >
         <h2>Featured Projects</h2>
         <div className="projects-grid row g-4">
@@ -57,7 +58,7 @@ const MainContent = ({ setActiveSection }) => {
             >
               <div className="project-image gradient-overlay p-3">
                 <h3>Project {project}</h3>
-                <p>Project Description</p>
+                <p>Short description of the project.</p>
               </div>
             </motion.div>
           ))}
@@ -68,28 +69,31 @@ const MainContent = ({ setActiveSection }) => {
       <motion.section 
         id="experience"
         className="content-section mb-5"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
       >
         <h2>Experience</h2>
-        <div className="timeline">
+        <div className="timeline position-relative ps-3">
           {[
             {
               company: 'Spiraxy Studios',
               role: 'Software Engineer',
               period: '2024 - Present'
             },
-            // Additional experiences can be added here.
+            // Add more experiences as needed
           ].map((exp, index) => (
             <motion.div 
               key={index}
-              className="timeline-item mb-3"
+              className="timeline-item mb-4 position-relative"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
               <div className="timeline-content p-3">
-                <h3>{exp.company}</h3>
-                <p className="role">{exp.role}</p>
-                <span className="period">{exp.period}</span>
+                <h3 className="h5">{exp.company}</h3>
+                <p className="role mb-1">{exp.role}</p>
+                <span className="period small">{exp.period}</span>
               </div>
             </motion.div>
           ))}
@@ -100,6 +104,9 @@ const MainContent = ({ setActiveSection }) => {
       <motion.section 
         id="skills"
         className="content-section mb-5"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
       >
         <div className="section-card p-4">
           <h2>Tech Stack</h2>
