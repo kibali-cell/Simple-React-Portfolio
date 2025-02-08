@@ -1,0 +1,193 @@
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-elevation: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent: #2f2f2f;
+  --gradient-start: #1a1a1a;
+  --gradient-end: #0a0a0a;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.portfolio-app {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  position: relative;
+}
+
+/* Background Layers */
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, var(--gradient-start), var(--gradient-end));
+  opacity: 0.4;
+  z-index: 0;
+}
+
+.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;base64,...'); /* Your noise texture SVG */
+  opacity: 0.05;
+  z-index: 1;
+}
+
+/* Sidebar Styles */
+.sidebar-container {
+  position: sticky;
+  top: 2rem;
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  border: 1px solid var(--accent);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+/* Profile and Navigation */
+.profile-image-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: var(--accent);
+  position: relative;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  width: 12px;
+  height: 12px;
+  background: #4CAF50;
+  border-radius: 50%;
+  border: 2px solid var(--bg-secondary);
+}
+
+.primary-nav .nav-item {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background 0.3s;
+  margin-bottom: 0.5rem;
+}
+
+.primary-nav .nav-item.active,
+.primary-nav .nav-item:hover {
+  background: var(--accent);
+  color: var(--text-primary);
+}
+
+/* Availability Section */
+.availability-section .status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+}
+
+/* Projects Grid */
+.projects-grid .project-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-elevation);
+  border: 1px solid var(--accent);
+}
+
+.gradient-overlay {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), transparent);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: var(--text-primary);
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--accent);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.5rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-primary);
+}
+
+/* Skills Grid */
+.skill-chip {
+  background: var(--accent);
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Custom Scrollbar (Optional) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
