@@ -25,7 +25,6 @@ html {
   /* Interactive Elements */
   --button-bg: #27272A;
   --button-text: #FFFFFF;
-  --social-bg: #27272A;
   --hover-opacity: 0.8;
 }
 
@@ -83,11 +82,11 @@ body, html, .app {
   margin-bottom: 16px;
   color: var(--secondary-text);
   text-decoration: none;
-  transition: opacity 0.3s;
+  transition: color 0.3s;
 }
 .floating-sidebar .nav-link:hover,
 .floating-sidebar .nav-link.active {
-  opacity: var(--hover-opacity);
+  color: var(--primary-text);
 }
 
 /* Sidebar Actions: Contact Button */
@@ -99,12 +98,16 @@ body, html, .app {
   border: 2px solid var(--primary-text);
   background: transparent;
   color: var(--primary-text);
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 25px;
   font-weight: 600;
   width: 100%;
   cursor: pointer;
   transition: background 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .contact-btn:hover {
   background-color: var(--primary-text);
@@ -132,12 +135,25 @@ body, html, .app {
 
 /* Content Area */
 .content {
-  margin-left: 360px; /* Leave space for sidebar on Home */
+  margin-left: 360px; /* leave space for sidebar on Home */
   padding: 32px;
   gap: 24px;
 }
 .content.full-width {
   margin-left: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .floating-sidebar {
+    position: static;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .content {
+    margin-left: 0;
+    padding: 16px;
+  }
 }
 
 /* Back Button (Projects Page) */
@@ -185,9 +201,9 @@ body, html, .app {
 
 /* Project Showcase Card */
 .project-card {
-  background-color: var(--secondary-bg);
+  background-color: var(--secondary-bg) !important;
   border-radius: 12px;
-  padding: 24px;
+  padding: 16px;  /* reduced padding */
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -294,14 +310,6 @@ body, html, .app {
   color: var(--primary-text);
 }
 
-/* General Cards (if used elsewhere) */
-.card {
-  border-radius: 12px;
-  padding: 16px;
-  background-color: var(--secondary-bg);
-  gap: 16px;
-}
-
 /* View All Projects Link (Featured Projects Section) */
 .view-all-container {
   text-align: right;
@@ -311,7 +319,7 @@ body, html, .app {
   text-decoration: none;
   color: var(--accent-text);
   font-size: 1rem;
-  transition: color 0.3s;
+  transition: opacity 0.3s;
 }
 .view-all-link:hover {
   opacity: var(--hover-opacity);
