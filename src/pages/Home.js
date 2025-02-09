@@ -48,7 +48,7 @@ function Home() {
               <img src={imageURL} className="card-img-top" alt="Project 1" />
               <div className="card-body">
                 <h5 className="card-title">Project One</h5>
-                <p className="card-text">A modern e-commerce platform with seamless UX.</p>
+                <p className="card-text">A modern e-commerce platform with seamless UX. Come work with us</p>
               </div>
             </div>
           </div>

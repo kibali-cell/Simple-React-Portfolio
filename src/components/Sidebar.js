@@ -34,8 +34,9 @@ function Sidebar({ openContactModal }) {
 
       {/* Actions */}
       <div className="sidebar-actions">
-        <button className="btn contact-btn" onClick={openContactModal}>
-          Contact Me
+        <button className=" contact-btn" onClick={openContactModal}>
+        <span>Contact Me</span>
+          <i className="bi bi-arrow-up-right"></i>
         </button>
       </div>
 

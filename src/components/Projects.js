@@ -9,7 +9,7 @@ const projectsData = [
     title: "E-commerce Platform",
     category: "fullstack",
     description: "Built a scalable e-commerce platform handling 10k+ daily users",
-    tech: ["React", "Node.js", "MongoDB", "AWS"],
+    tech: ["React", "Node.js", "MongoDB", ],
     metrics: "Improved load time by 40%, increased conversion by 25%",
     // Using a CSS gradient via inline style.
     gradient: "linear-gradient(to right, #6a11cb, #2575fc)",

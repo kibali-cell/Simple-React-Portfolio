@@ -27,7 +27,7 @@ function Projects() {
       id: 3,
       title: "Project Three",
       description: "Detailed description for project three.",
-      techStack: ["Python", "Django"],
+      techStack: ["Python", "Django", "PostgreSQL"],
       github: "https://github.com/yourusername/project-three",
       viewLink: "#"
     }
