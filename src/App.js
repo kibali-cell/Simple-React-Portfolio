@@ -1,58 +1,72 @@
+// src/App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Link
+} from 'react-router-dom';
+import Home from './pages/Home';
+import Projects from './pages/Projects';
 import Sidebar from './components/Sidebar';
-import MainContent from './components/MainContent';
-import ProjectsPage from './pages/ProjectsPage';
 import ContactModal from './components/ContactModal';
+import './styles.css';
 
-const App = () => {
-  const [activeSection, setActiveSection] = useState('about');
+function AppContent({ darkMode, toggleDarkMode, showContact, openContactModal, closeContactModal }) {
+  const location = useLocation();
+  const isProjectsPage = location.pathname === "/projects";
+
+  return (
+    <div className={`app ${darkMode ? 'dark' : 'light'}`}>
+      {/* Global Dark/Light Toggle at Top Right */}
+      <div className="global-toggle" onClick={toggleDarkMode}>
+        {darkMode ? <i className="bi bi-moon-fill"></i> : <i className="bi bi-sun-fill"></i>}
+      </div>
+
+      {/* Sidebar appears only on Home */}
+      {!isProjectsPage && <Sidebar openContactModal={openContactModal} />}
+
+      {/* Content area uses full width on Projects page */}
+      <div className={isProjectsPage ? "content full-width" : "content"}>
+        {isProjectsPage && (
+          <div className="back-button mb-3">
+            <Link to="/" className="back-link">
+              <i className="bi bi-arrow-left"></i> Back
+            </Link>
+          </div>
+        )}
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+        </Routes>
+      </div>
+
+      <ContactModal show={showContact} onClose={closeContactModal} />
+    </div>
+  );
+}
+
+function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [showContactModal, setShowContactModal] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
-  const toggleDarkMode = () => setDarkMode((prev) => !prev);
-  const openContactModal = () => setShowContactModal(true);
-  const closeContactModal = () => setShowContactModal(false);
+  const toggleDarkMode = () => setDarkMode(prev => !prev);
+  const openContactModal = () => setShowContact(true);
+  const closeContactModal = () => setShowContact(false);
 
   return (
     <Router>
-      <div className={`portfolio-app ${darkMode ? 'dark' : 'light'}`}>
-        {/* Background Layers */}
-        <div className="gradient-bg">
-          <div className="noise-overlay"></div>
-        </div>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="container-fluid">
-                <div className="row">
-                  {/* Floating Sidebar for large screens */}
-                  <div className="d-none d-lg-block">
-                    <Sidebar
-                      activeSection={activeSection}
-                      setActiveSection={setActiveSection}
-                      darkMode={darkMode}
-                      toggleDarkMode={toggleDarkMode}
-                      openContactModal={openContactModal}
-                    />
-                  </div>
-                  {/* Main Content – leave a left margin for the floating sidebar */}
-                  <div className="col-12" style={{ marginLeft: '280px' }}>
-                    <MainContent setActiveSection={setActiveSection} />
-                  </div>
-                </div>
-              </div>
-            }
-          />
-          <Route path="/projects" element={<ProjectsPage />} />
-        </Routes>
-        <ContactModal show={showContactModal} onClose={closeContactModal} />
-      </div>
+      <AppContent
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
+        showContact={showContact}
+        openContactModal={openContactModal}
+        closeContactModal={closeContactModal}
+      />
     </Router>
   );
-};
+}
 
 export default App;

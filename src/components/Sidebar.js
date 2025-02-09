@@ -2,72 +2,60 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Sidebar = ({ activeSection, setActiveSection, darkMode, toggleDarkMode, openContactModal }) => {
+function Sidebar({ openContactModal }) {
   return (
-    <div className="sidebar-container p-4 floating-sidebar">
+    <div className="sidebar floating-sidebar">
       {/* Profile Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="profile-section text-center mb-4"
-      >
-        <div className="profile-image-container mx-auto mb-3">
-          <div className="profile-image">
-            <div className="status-indicator"></div>
-          </div>
-        </div>
-        <h1 className="h4">Jane Doe</h1>
-        <p>Software Engineer &amp; Full-stack Developer</p>
-        <div className="location-chip">
-          <i className="bi bi-geo-alt"></i> New York, USA
-        </div>
-      </motion.div>
-
-      {/* Primary Navigation */}
-      <nav className="primary-nav mb-4">
-        {[
-          { id: 'about', icon: 'bi bi-person', label: 'About' },
-          { id: 'projects', icon: 'bi bi-grid', label: 'Projects' },
-          { id: 'experience', icon: 'bi bi-briefcase', label: 'Experience' },
-          { id: 'skills', icon: 'bi bi-tools', label: 'Skills' }
-        ].map((item) => (
-          <motion.a
-            key={item.id}
-            href={`#${item.id}`}
-            className={`nav-item d-block mb-2 p-2 ${activeSection === item.id ? 'active' : ''}`}
-            onClick={() => setActiveSection(item.id)}
-            whileHover={{ x: 10 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-          >
-            <i className={item.icon}></i> {item.label}
-          </motion.a>
-        ))}
-      </nav>
-
-      {/* Availability & Contact */}
-      <div className="availability-section text-center mb-4">
-        <span className="status-badge d-inline-flex align-items-center mb-2">
-          <span className="pulse me-1"></span> Available for Freelance
-        </span>
-        <p>Open to Web Development Projects</p>
-        <motion.button
-          className="contact-btn btn btn-outline-light"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={openContactModal}
-        >
-          Contact Me
-        </motion.button>
+      <div className="profile text-center">
+        <img
+          src="https://images.pexels.com/photos/2325447/pexels-photo-2325447.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="Profile"
+          className="profile-img"
+        />
+        <h2 className="h5 mt-2">Jane Doe</h2>
+        <p>Full-Stack Developer</p>
       </div>
 
-      {/* Dark/Light Mode Toggle with Icon */}
-      <div className="toggle-mode text-center">
-        <button onClick={toggleDarkMode} className="btn btn-secondary">
-          {darkMode ? <i className="bi bi-moon-fill"></i> : <i className="bi bi-sun-fill"></i>}
+      {/* Navigation (in-page links) */}
+      <nav className="nav flex-column">
+        <motion.a href="#about" className="nav-link" whileHover={{ x: 5 }}>
+          About
+        </motion.a>
+        <motion.a href="#projects" className="nav-link" whileHover={{ x: 5 }}>
+          Projects
+        </motion.a>
+        <motion.a href="#experience" className="nav-link" whileHover={{ x: 5 }}>
+          Experience
+        </motion.a>
+        <motion.a href="#skills" className="nav-link" whileHover={{ x: 5 }}>
+          Skills
+        </motion.a>
+      </nav>
+
+      {/* Actions */}
+      <div className="sidebar-actions">
+        <button className="btn contact-btn" onClick={openContactModal}>
+          Contact Me
         </button>
+      </div>
+
+      {/* Social Icons */}
+      <div className="social-icons">
+        <a href="https://linkedin.com" target="_blank" rel="noreferrer">
+          <i className="bi bi-linkedin"></i>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noreferrer">
+          <i className="bi bi-github"></i>
+        </a>
+        <a href="mailto:your.email@example.com">
+          <i className="bi bi-envelope"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noreferrer">
+          <i className="bi bi-twitter"></i>
+        </a>
       </div>
     </div>
   );
-};
+}
 
 export default Sidebar;

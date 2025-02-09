@@ -1,73 +1,47 @@
+// src/components/ContactModal.js
+import React from 'react';
+import { motion } from 'framer-motion';
 
-import React, { useState } from 'react';
-import { Modal, Form, Button, Alert } from 'react-bootstrap';
-
-const ContactModal = ({ show, onHide }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [status, setStatus] = useState(null);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus({ type: 'success', message: 'Message sent successfully!' });
-    // Add your form submission logic here
-  };
+function ContactModal({ show, onClose }) {
+  if (!show) return null;
 
   return (
-    <Modal
-      show={show}
-      onHide={onHide}
-      centered
-      className="contact-modal"
-    >
-      <Modal.Header closeButton>
-        <Modal.Title>Get in Touch</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {status && (
-          <Alert variant={status.type} onClose={() => setStatus(null)} dismissible>
-            {status.message}
-          </Alert>
-        )}
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label>Message</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={4}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              required
-            />
-          </Form.Group>
-          <Button type="submit" variant="primary" className="w-100">
-            Send Message
-          </Button>
-        </Form>
-      </Modal.Body>
-    </Modal>
+    <div className="modal-overlay" onClick={onClose}>
+      <motion.div
+        className="modal-dialog"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        onClick={(e) => e.stopPropagation()}  // Prevent closing when clicking inside
+      >
+        <div className="modal-header">
+          <h5>Contact Me</h5>
+          <button className="close" onClick={onClose}>
+            &times;
+          </button>
+        </div>
+        <div className="modal-body">
+          <form>
+            <div className="mb-3">
+              <label className="form-label">Name</label>
+              <input type="text" className="form-control" placeholder="Your Name" />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Email</label>
+              <input type="email" className="form-control" placeholder="you@example.com" />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Message</label>
+              <textarea className="form-control" rows="3" placeholder="Your Message"></textarea>
+            </div>
+            <button type="submit" className="btn submit-btn">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </motion.div>
+    </div>
   );
-};
+}
 
 export default ContactModal;
